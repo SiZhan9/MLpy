@@ -19,4 +19,4 @@ def computeCost(X,y,theta):
 def gradientDescent(X,y,theta,alpha,num_iters):
     m = len(y)
     n = len(theta)
-    temp = np.matrix(np.zeros(n,num_iters))
+    temp = np.matrix(np.zeros(n,num_iters))gi

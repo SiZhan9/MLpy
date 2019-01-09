@@ -6,5 +6,8 @@ Created on Mon Jan  7 22:00:19 2019
 numpy tutorial
 """
 import numpy as np
-a = np.arange(15).reshape(3,5) 
-b = np.array([6,7,8])
+import matplotlib.pyplot as plt
+mu,sigma = 2,0.5
+v =np.random.normal(mu,sigma,10000)
+plt.hist(v, bins = 100,density =1)
+plt.show()
