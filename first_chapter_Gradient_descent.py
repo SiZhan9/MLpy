@@ -18,7 +18,7 @@ def computeCost(X,Y,theta):
     J = 0
     dev = np.transpose(theta) @ X - Y
     J = dev @ np.transpose(dev)/(2*m)
-    print(J)
+   # print(J)
     return J
 
 
@@ -29,18 +29,20 @@ def gradientDescent(X,Y,theta,alpha,num_iters):
     J = []
     i = 0
     counter_iters =[]
+    theta_collect =[]
     ## iteration algorithm
     while i <= num_iters:
         Dev = np.transpose(theta) @ X - Y ## Dev is a 1*m vector
-        print(Dev)
+       # print(Dev)
         J.append( computeCost(X,Y,theta))
         new_theta = theta - (X @ np.transpose(Dev))*alpha/m
+        theta_collect.append(new_theta)
         theta = new_theta
-        print(new_theta)
+       # print(new_theta)
         i += 1
         counter_iters.append(i)
         
-    return J, theta, counter_iters
+    return J, theta, theta_collect,counter_iters
 
 ## Main Function
 
@@ -54,13 +56,29 @@ theta = np.zeros(n).reshape(n,1)
 alpha = 0.00001
 num_iters = 300
 J_collect= []
-J_collect,final_theta,counter_iters = gradientDescent(X,Y,theta,alpha,num_iters) 
+theta_collect =[]
+J_collect,final_theta,theta_collect,counter_iters = gradientDescent(X,Y,theta,alpha,num_iters) 
 Cost_Data = []
+theta_zero =[]
+theta_one =[]
+theta_two = []
+theta_three =[]
+theta_four =[]
 plt.figure('model')
 for each in J_collect:
     Cost_Data.append(each[0,0])
 
+for each in theta_collect:
+    theta_zero.append(each[0,0])
+    theta_one.append(each[1,0])
+    theta_two.append(each[2,0])
+    theta_three.append(each[3,0])
+    theta_four.append(each[4,0])
 plt.plot(counter_iters,Cost_Data)
 plt.xlabel('Times of iteration')
 plt.ylabel('Cost Function Values')
 plt.show()
+
+## Adding other conture plot
+plt.figure('other figure')
+plt.contour(theta_zero,theta_four,J_collect)
