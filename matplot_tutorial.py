@@ -5,7 +5,10 @@ Created on Wed Jan  9 16:23:38 2019
 @author: zhang
 matplot tutorial for data visiualization
 """
+import numpy as np
 import matplotlib.pyplot as plt
-plt.plot([1,2,3,4])
-plt.ylabel('Some numbers')
-plt.show()
+
+x = np.arange(0,5,0.1);
+y = np.sin(x)
+plt.plot(x,y)
+plt.grid(True)
